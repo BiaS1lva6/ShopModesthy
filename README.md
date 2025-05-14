@@ -20,7 +20,12 @@ O projeto foi desenvolvido com as seguintes tecnologias:
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
 - [React DOM](https://reactjs.org/docs/react-dom.html)
 
-## 📦 Instalação e Execução
+
+---
+
+## 🛠️ Instalação e uso
+
+```bash
 # 1. Clone o repositório
 git clone https://github.com/seu-usuario/devsteam.git
 
@@ -32,3 +37,4 @@ npm install
 
 # 4. Inicie o servidor de desenvolvimento
 npm run dev
+```

@@ -8,13 +8,13 @@ import Coletes from "./pages/Coletes"
 import SobreNos from "./pages/SobreNos"
 import ProductDetail from "./pages/ProductDetail"
 import Cart from "./pages/Cart"
+import ProtectedRoute from "./components/ProtectedRoute"
 import Checkout from "./pages/Checkout"
 import SearchResults from "./pages/SearchResults"
-import NotFound from "./pages/NotFound"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import ProtectedRoute from "./components/ProtectedRoute"
 import UserAccount from "./pages/UserAccount"
+import NotFound from "./pages/NotFound"
 
 function App() {
   return (

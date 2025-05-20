@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import { useState } from "react"
+import Logo from "../assets/logo.png"
 
 const Footer = () => {
   const [email, setEmail] = useState("")
@@ -16,7 +17,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-lg-3 mb-4 mb-lg-0">
             <Link to="/">
-              <img src="/placeholder.svg?height=40&width=40&text=" alt="Logo" className="mb-3" />
+              <img src={Logo} alt="Logo" className="mb-3" />
             </Link>
             <p className="small mb-3">Sua loja de roupas com as melhores tendências da moda.</p>
             <div className="d-flex gap-2">

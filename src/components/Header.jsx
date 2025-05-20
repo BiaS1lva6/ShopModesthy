@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router"
 import { useCart } from "../contexts/CartContext"
 import { useAuth } from "../contexts/AuthContext"
 import { useState } from "react"
+import Logo from "../assets/logo.png";
 
 const Header = ({ openRegisterModal }) => {
   const { itemCount } = useCart()
@@ -32,7 +33,7 @@ const Header = ({ openRegisterModal }) => {
       <div className="container d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
           <Link to="/" className="me-5">
-            <img src="/placeholder.svg?height=40&width=40&text=" alt="Logo" className="logo" />
+            <img src={Logo} alt="Logo" className="logo" />
           </Link>
           <nav className="d-none d-md-flex">
             <ul className="nav">

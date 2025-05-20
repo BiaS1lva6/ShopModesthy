@@ -1,68 +1,279 @@
+/* Cores e estilos gerais */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --primary-bg: #e8dfd5;
+  --secondary-bg: #f8f8f8;
+  --dark-color: #212529;
+  --border-color: #dee2e6;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: var(--dark-color);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Header e navegação */
+.header-bg {
+  background-color: var(--primary-bg);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.search-input {
+  border-right: none;
+}
+
+.search-btn {
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-left: none;
+}
+
+/* Menu do usuário */
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 220px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.user-menu-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--secondary-bg);
+}
+
+.user-menu-body {
+  padding: 8px 0;
+}
+
+.user-menu-item {
+  display: block;
+  padding: 8px 16px;
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+.user-menu-item:hover {
+  background-color: var(--secondary-bg);
+}
+
+/* Footer */
+.footer-bg {
+  background-color: var(--primary-bg);
+}
+
+.footer-link {
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--dark-color);
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+.payment-icon {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+}
+
+/* Produtos */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.product-title {
+  font-size: 0.9rem;
+  color: var(--dark-color);
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+.btn-adicionar {
+  background-color: var(--primary-bg);
+  border: none;
+  color: var(--dark-color);
+  transition: all 0.3s ease;
+}
+
+.btn-adicionar:hover {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+.btn-ver-mais {
+  background-color: var(--primary-bg);
+  border: none;
+  color: var(--dark-color);
+  padding: 8px 20px;
+}
+
+/* Filtros e ordenação */
+.size-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+/* Detalhes do produto */
+.product-image-container {
+  background-color: #f5f5f5;
+}
+
+.product-thumbnail {
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.size-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+}
+
+.size-btn.active {
+  border-color: var(--dark-color);
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+.btn-adicionar-carrinho {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+/* Carrinho */
+.cart-item-image {
+  background-color: #f5f5f5;
+}
+
+/* Checkout */
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  color: var(--dark-color);
+}
+
+.step-number.active {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+.payment-option {
+  width: 100%;
+  height: 60px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.payment-option.active {
+  border-color: var(--dark-color);
+}
+
+/* Modal de cadastro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.register-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Carousel */
+.carousel-content {
+  height: 500px;
+  background-color: #f5f5f5;
+}
+
+/* Formulários de login e cadastro */
+.form-control:focus {
+  border-color: var(--dark-color);
+  box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.25);
+}
+
+.btn-dark {
+  background-color: var(--dark-color);
+  border-color: var(--dark-color);
+}
+
+.btn-dark:hover {
+  background-color: #000;
+  border-color: #000;
+}
+
+.btn-outline-dark {
+  color: var(--dark-color);
+  border-color: var(--dark-color);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .carousel-content {
+    height: 300px;
   }
 }

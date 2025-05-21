@@ -9,6 +9,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null)
   const [selectedSize, setSelectedSize] = useState("P")
   const [quantity, setQuantity] = useState(1)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
 
   useEffect(() => {
     const foundProduct = getProductById(id)
@@ -33,6 +34,14 @@ const ProductDetail = () => {
     )
   }
 
+  // Garantir que temos um array de imagens, mesmo que o produto não tenha
+  const productImages = product.images || [
+    product.image, // Imagem principal
+    "/placeholder.svg?height=600&width=400&text=Imagem+2",
+    "/placeholder.svg?height=600&width=400&text=Imagem+3",
+    "/placeholder.svg?height=600&width=400&text=Imagem+4",
+  ]
+
   return (
     <div className="container py-4">
       <nav aria-label="breadcrumb" className="mb-4">
@@ -52,17 +61,20 @@ const ProductDetail = () => {
       <div className="row">
         <div className="col-md-6 mb-4">
           <div className="product-image-container mb-3">
-            <img src={product.image || "/placeholder.svg"} alt={product.name} className="img-fluid" />
+            <img
+              src={productImages[activeImageIndex] || product.image || "/placeholder.svg"}
+              alt={product.name}
+              className="img-fluid"
+            />
           </div>
           <div className="row">
-            {[...Array(4)].map((_, index) => (
+            {productImages.map((image, index) => (
               <div className="col-3" key={index}>
-                <div className="product-thumbnail">
-                  <img
-                    src={product.image || "/placeholder.svg"}
-                    alt={`${product.name} ${index + 1}`}
-                    className="img-fluid"
-                  />
+                <div
+                  className={`product-thumbnail ${activeImageIndex === index ? "active-thumbnail" : ""}`}
+                  onClick={() => setActiveImageIndex(index)}
+                >
+                  <img src={image || "/placeholder.svg"} alt={`${product.name} ${index + 1}`} className="img-fluid" />
                 </div>
               </div>
             ))}

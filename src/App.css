@@ -1,0 +1,21 @@
+.product-image {
+  position: relative;
+  aspect-ratio: 3 / 4; /* Proporção de 3:4 para todas as imagens de produtos */
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-inner img {
+  height: auto; /* Permite que a altura seja ajustada automaticamente */
+  max-height: 500px; /* Define uma altura máxima para telas maiores */
+  object-fit: contain; /* Garante que a imagem inteira seja exibida */
+  width: 100%; /* Garante que a largura ocupe todo o espaço do container */
+  background-color: #f8f9fa; /* Opcional: adiciona um fundo para destacar a imagem */
+}
+
+@media (max-width: 768px) {
+  .carousel-inner img {
+    max-height: 300px; /* Reduz a altura máxima em telas menores */
+  }
+}
+

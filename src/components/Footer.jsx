@@ -15,9 +15,9 @@ const Footer = () => {
     <footer className="footer-bg py-5 mt-5">
       <div className="container">
         <div className="row">
-          <div className="col-lg-3 mb-4 mb-lg-0">
-            <Link to="/">
-              <img src={Logo} alt="Logo" className="mb-3" />
+          <div className="col-lg-1 mb-4 mb-lg-0">
+            <Link to="/" >
+              <img src={Logo} alt="Logo" className="img-fluid footer-logo" />
             </Link>
             <p className="small mb-3">Sua loja de roupas com as melhores tendências da moda.</p>
             <div className="d-flex gap-2">
@@ -85,11 +85,18 @@ const Footer = () => {
           <div className="col-lg-3">
             <h6 className="mb-3">PAGAMENTO</h6>
             <div className="row g-2 mb-4">
-              {[...Array(8)].map((_, i) => (
-                <div className="col-3" key={i}>
-                  <div className="payment-icon"></div>
-                </div>
-              ))}
+              <div className="col-3">
+                <i className="bi bi-credit-card-2-front-fill fs-3"></i>
+              </div>
+              <div className="col-3">
+                <i className="bi bi-paypal fs-3"></i>
+              </div>
+              <div className="col-3">
+                <i className="bi bi-wallet2 fs-3"></i>
+              </div>
+              <div className="col-3">
+                <i className="bi bi-bank fs-3"></i>
+              </div>
             </div>
 
             <h6 className="mb-3">NEWSLETTER</h6>

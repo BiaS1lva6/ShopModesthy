@@ -125,25 +125,45 @@ const Checkout = () => {
                       <div
                         className={`payment-option ${paymentMethod === "credit" ? "active" : ""}`}
                         onClick={() => setPaymentMethod("credit")}
-                      ></div>
+                      >
+                        <img
+                          src="../img/master.png"
+                          alt="Cartão de Crédito"
+                          className="img-fluid"
+                        />
+                      </div>
                     </div>
                     <div className="col-3">
                       <div
                         className={`payment-option ${paymentMethod === "boleto" ? "active" : ""}`}
                         onClick={() => setPaymentMethod("boleto")}
-                      ></div>
+                      >
+                        <img
+                          src="../img/boleto2.png"
+                          alt="Boleto Bancário"
+                          className="img-fluid"
+                        />
+                      </div>
                     </div>
                     <div className="col-3">
                       <div
                         className={`payment-option ${paymentMethod === "pix" ? "active" : ""}`}
                         onClick={() => setPaymentMethod("pix")}
-                      ></div>
+                      >
+                        <img
+                          src="../img/pix4.png"
+                          alt="PIX"
+                          className="img-fluid"
+                        />
+                      </div>
                     </div>
                     <div className="col-3">
                       <div
                         className={`payment-option ${paymentMethod === "bank" ? "active" : ""}`}
                         onClick={() => setPaymentMethod("bank")}
-                      ></div>
+                      >
+                        <img src="../img/visa2.png" alt="" />
+                      </div>
                     </div>
                   </div>
                 </div>

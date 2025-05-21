@@ -13,11 +13,8 @@ const ProductCard = ({ product }) => {
     <div className="product-card mb-4">
       <Link to={`/produtos/${product.id}`} className="text-decoration-none">
         <div className="product-image mb-3">
-          <img
-            src={product.image || "/placeholder.svg?height=300&width=300&text="}
-            alt={product.name}
-            className="img-fluid"
-          />
+        <img  src={product.image} alt={product.name} className="product-image img-fluid" />
+        
         </div>
         <h6 className="product-title text-uppercase mb-1">{product.name}</h6>
         <div className="d-flex align-items-center mb-2">

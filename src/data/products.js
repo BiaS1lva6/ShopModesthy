@@ -1,9 +1,21 @@
-import ColeteAlfaiatariaCinza from "../img/ColeteCinzaAlfaiataria.jpg"
+import ColeteAlfaiatariaCinza from "../img/ColeteCinzafrenteN.jpg"
 import ColeteCinzaCosta from "../img/ColeteCinzaCostas.webp"
 import ColeteBege from "../img/ColeteSocialFemininoBranco.jpeg.jpg"
 import ColeteBegeDiagonal1 from "../img/ColeteLongoAlfaiatariaBegeDiagonal.webp"
 import ColeteBegeDiagonal2 from "../img/ColeteLongoAlfaiatariaBegeDiagonal2.webp"
-import ColeteBegeCosta from "../img/ColeteAlfaiatariaLongoBegeCOSTAS.webp"
+import ColeteCinzaDiagnal1 from "../img/ColeteCinzaAlfaiataria.jpg"
+import ColetePretoFrente from "../img/ModestyRubies.jpg"
+import ColetePretoDiagnal1 from "../img/ColetePretoDiagonal.webp"
+import ColetePretoDiagnal2 from "../img/ColeteDiagonalPreto2.webp"
+import ColetePretoCostas from "../img/ColeteAlfaiatariaPretoCOSTAS.webp"
+import ColeteBegeTransversal from "../img/ColeteBegeFrente1.jpg"
+import ColeteBegeTransversalDiagonal1 from "../img/ColeteBegeDiagonal.jpg"
+import ColeteBegeTransversalCosta from "../img/ColeteBegeCosta.jpg"
+import ColeteBegeCosta from "../img/ColeteBegeCostas.webp"
+import VestidoFloralFrente from "../img/VestidoFloralFrente.webp"
+import VestidoFloralCostas from "../img/VestidoFloralCostas.webp"
+import VestidoSummerFrente from "../img/VestidoLongoBrancoSummer].jpg"
+import VestidoSummerCostas from "../img/VestidoBrancoSummerCostas.webp"
 
 const products = [
   {
@@ -156,12 +168,10 @@ const products = [
     price: 229.99,
     originalPrice: 289.99,
     installmentValue: 23.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: VestidoSummerFrente,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Vestido+Longo+1",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Longo+2",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Longo+3",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Longo+4",
+      VestidoSummerFrente,
+      VestidoSummerCostas,
     ],
     category: "vestidos",
     inStock: true,
@@ -172,12 +182,10 @@ const products = [
     price: 159.99,
     originalPrice: 199.99,
     installmentValue: 16.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: VestidoFloralFrente,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Vestido+Floral+1",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Floral+2",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Floral+3",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Floral+4",
+      VestidoFloralFrente,
+      VestidoFloralCostas,
     ],
     category: "vestidos",
     inStock: true,
@@ -204,28 +212,27 @@ const products = [
     price: 159.99,
     originalPrice: 199.99,
     installmentValue: 16.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ColetePretoFrente,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Colete+Preto+1",
-      "/placeholder.svg?height=600&width=400&text=Colete+Preto+2",
-      "/placeholder.svg?height=600&width=400&text=Colete+Preto+3",
-      "/placeholder.svg?height=600&width=400&text=Colete+Preto+4",
+      ColetePretoFrente,
+      ColetePretoDiagnal1,
+      ColetePretoDiagnal2,
+      ColetePretoCostas,
     ],
     category: "coletes",
     inStock: true,
   },
   {
     id: 14,
-    name: "COLETE SOCIAL FEMININO BRANCO",
+    name: "COLETE SOCIAL TRANSVERSAL NUDE",
     price: 149.99,
     originalPrice: 189.99,
     installmentValue: 15.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ColeteBegeTransversal,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Colete+Branco+1",
-      "/placeholder.svg?height=600&width=400&text=Colete+Branco+2",
-      "/placeholder.svg?height=600&width=400&text=Colete+Branco+3",
-      "/placeholder.svg?height=600&width=400&text=Colete+Branco+4",
+      ColeteBegeTransversal,
+      ColeteBegeTransversalDiagonal1,
+      ColeteBegeTransversalCosta,
     ],
     category: "coletes",
     inStock: true,
@@ -240,8 +247,7 @@ const products = [
     images: [
       ColeteAlfaiatariaCinza,
      ColeteCinzaCosta,
-      "/placeholder.svg?height=600&width=400&text=Colete+Jeans+3",
-      "/placeholder.svg?height=600&width=400&text=Colete+Jeans+4",
+      ColeteCinzaDiagnal1,
     ],
     category: "coletes",
     inStock: true,

@@ -14,8 +14,29 @@ import ColeteBegeTransversalCosta from "../img/ColeteBegeCosta.jpg"
 import ColeteBegeCosta from "../img/ColeteBegeCostas.webp"
 import VestidoFloralFrente from "../img/VestidoFloralFrente.webp"
 import VestidoFloralCostas from "../img/VestidoFloralCostas.webp"
-import VestidoSummerFrente from "../img/VestidoLongoBrancoSummer].jpg"
+import VestidoSummerFrente from "../img/VestidoLongoBrancoSummer.jpg"
 import VestidoSummerCostas from "../img/VestidoBrancoSummerCostas.webp"
+import VestidoMidiPreto from "../img/EleganceFrente.jpg"
+import VestidoMidiPretoCostas from "../img/VestidoMidePretoEleganteCostas.webp"
+import VestidoPrincesaFrente from "../img/ModestyRubies (1).jpg"
+import VestidoPrincesaCostas from "../img/VestidoCurtoprincesaPretoCostas.webp"
+import ConjuntoDeboraFrente from "../img/Deborah.jpg"
+import ConjuntoDeboraCostas from "../img/ConjuntoDeborahCostas.webp"
+import ConjuntoMacacaoPreto from "../img/ConjuntoMacacaopretoFrente.webp"
+import ConjuntoMacacaoPretoCostas from "../img/ConjuntoMacacãoPretoCostas..jpg"
+import ConjuntoSocialPreto from "../img/ConjuntopretoFrente.webp"
+import ConjuntoSocialPretoCostas from "../img/ConjuntoPretoCostas.webp"
+import ConjuntoSocialBranco from "../img/ConjuntoBrancoFrente.webp"
+import ConjuntoSocialBrancoCostas from "../img/ConjuntoBrancoCostas.webp"
+import ConjuntoMarrom from "../img/ConjuntoMarromFrente.webp"
+import ConjuntoMarromCostas from "../img/ConjuntoMarromCostas.webp"
+import ConjuntoSaia from "../img/ConjuntoDeSaiaPretofrente.webp" 
+import ConjuntoSaiaCostas from "../img/ConjuntoDeSaiaPretoCostas.webp"
+import ConjuntoGirlCreamMilk from "../img/ConjuntoCompletoSocialGirlCreamMilk.webp"
+import ConjuntoGirlCreamMilkCostas from "../img/ConjuntoCompletoSocialGirlCreamMilkCostas.jpg"
+import ConjuntoGirlPreto from "../img/ConjuntoPretoSocialGirlFrente.webp"
+import ConjuntoGirlPretoCostas from "../img/ConjuntoPretoCostas2.webp"
+
 
 const products = [
   {
@@ -24,12 +45,10 @@ const products = [
     price: 229.99,
     originalPrice: 289.99,
     installmentValue: 23.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoMacacaoPreto,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Blusa+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Blusa+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Blusa+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Blusa+4",
+      ConjuntoMacacaoPreto,
+      ConjuntoMacacaoPretoCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -40,12 +59,10 @@ const products = [
     price: 229.99,
     originalPrice: 289.99,
     installmentValue: 23.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoSaia,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Saia+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Saia+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Saia+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Saia+4",
+      ConjuntoSaia,
+      ConjuntoSaiaCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -56,12 +73,10 @@ const products = [
     price: 219.99,
     originalPrice: 279.99,
     installmentValue: 22.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoGirlPreto,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Social+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Social+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Social+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Social+4",
+      ConjuntoGirlPreto,
+      ConjuntoGirlPretoCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -72,12 +87,10 @@ const products = [
     price: 219.99,
     originalPrice: 279.99,
     installmentValue: 22.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoGirlCreamMilk,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Cream+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Cream+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Cream+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Cream+4",
+      ConjuntoGirlCreamMilk,
+      ConjuntoGirlCreamMilkCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -88,12 +101,10 @@ const products = [
     price: 179.99,
     originalPrice: 229.99,
     installmentValue: 18.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoMarrom,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Shorts+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Shorts+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Shorts+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Shorts+4",
+     ConjuntoMarrom,
+      ConjuntoMarromCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -104,12 +115,10 @@ const products = [
     price: 179.99,
     originalPrice: 229.99,
     installmentValue: 18.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoSocialBranco,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Branco+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Branco+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Branco+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Branco+4",
+      ConjuntoSocialBranco,
+      ConjuntoSocialBrancoCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -120,12 +129,10 @@ const products = [
     price: 179.99,
     originalPrice: 229.99,
     installmentValue: 18.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoSocialPreto,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Preto+1",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Preto+2",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Preto+3",
-      "/placeholder.svg?height=600&width=400&text=Conjunto+Preto+4",
+     ConjuntoSocialPreto,
+     ConjuntoSocialPretoCostas,
     ],
     category: "conjuntos",
     inStock: true,
@@ -136,28 +143,24 @@ const products = [
     price: 199.99,
     originalPrice: 249.99,
     installmentValue: 20.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: ConjuntoDeboraFrente,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Deborah+Branco+1",
-      "/placeholder.svg?height=600&width=400&text=Deborah+Branco+2",
-      "/placeholder.svg?height=600&width=400&text=Deborah+Branco+3",
-      "/placeholder.svg?height=600&width=400&text=Deborah+Branco+4",
+      ConjuntoDeboraFrente,
+      ConjuntoDeboraCostas,
     ],
     category: "conjuntos",
     inStock: true,
   },
   {
     id: 9,
-    name: "VESTIDO MIDI PRETO ELEGANCE",
+    name: "VESTIDO CURTO PRETO PRINCESA",
     price: 199.99,
     originalPrice: 249.99,
     installmentValue: 20.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: VestidoPrincesaFrente,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Vestido+Midi+1",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Midi+2",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Midi+3",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Midi+4",
+      VestidoPrincesaFrente,
+      VestidoPrincesaCostas,
     ],
     category: "vestidos",
     inStock: true,
@@ -192,16 +195,14 @@ const products = [
   },
   {
     id: 12,
-    name: "VESTIDO TUBINHO SOCIAL PRETO",
+    name: "VESTIDO LONGO PRETO ELEGANCE",
     price: 189.99,
     originalPrice: 239.99,
     installmentValue: 19.0,
-    image: "/placeholder.svg?height=300&width=300&text=",
+    image: VestidoMidiPreto,
     images: [
-      "/placeholder.svg?height=600&width=400&text=Vestido+Tubinho+1",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Tubinho+2",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Tubinho+3",
-      "/placeholder.svg?height=600&width=400&text=Vestido+Tubinho+4",
+      VestidoMidiPreto,
+      VestidoMidiPretoCostas,
     ],
     category: "vestidos",
     inStock: true,

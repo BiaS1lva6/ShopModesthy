@@ -52,7 +52,7 @@ const Cart = () => {
                     <img
                       src={item.image || "/placeholder.svg"}
                       alt={item.name}
-                      className="cart-item-image me-3"
+                      className="cart-item-image me-3 img-fluid"
                       width="80"
                       height="80"
                     />

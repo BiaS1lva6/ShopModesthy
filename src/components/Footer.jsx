@@ -1,25 +1,27 @@
-import { Link } from "react-router"
-import { useState } from "react"
-import Logo from "../assets/logo.png"
+import { Link } from "react-router";
+import { useState } from "react";
+import Logo from "../assets/logo.png";
 
 const Footer = () => {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Implementar lógica de inscrição na newsletter
-    setEmail("")
-  }
+    setEmail("");
+  };
 
   return (
     <footer className="footer-bg py-5 mt-5">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-1 mb-4 mb-lg-0">
-            <Link to="/" >
+        <div className="row justify-content-center">
+          <div className="col-6 col-lg-1 mb-4 mb-lg-0">
+            <Link to="/">
               <img src={Logo} alt="Logo" className="img-fluid footer-logo" />
             </Link>
-            <p className="small mb-3">Sua loja de roupas com as melhores tendências da moda.</p>
+            <p className="small mb-3">
+              Sua loja de roupas com as melhores tendências da moda.
+            </p>
             <div className="d-flex gap-2">
               <a href="#" className="social-link">
                 <i className="bi bi-instagram"></i>
@@ -123,7 +125,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -60,13 +60,15 @@ const Login = () => {
       // Simulando uma chamada de API
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const success = login({
-        email: formData.email,
-        name: formData.email.split("@")[0], // Simulando um nome de usuário
-      })
+      const success = login(formData) // Passar formData completo incluindo senha
 
       if (success) {
-        navigate(from, { replace: true })
+        // Verificar se é admin e redirecionar adequadamente
+        if (formData.email === "admin@modestyruby.com" && formData.password === "admin123") {
+          navigate("/admin", { replace: true })
+        } else {
+          navigate(from, { replace: true })
+        }
       } else {
         setErrors({
           general: "Credenciais inválidas. Por favor, tente novamente.",

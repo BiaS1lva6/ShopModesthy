@@ -13,6 +13,11 @@ export const AuthProvider = ({ children }) => {
     return localStorage.getItem("user") !== null
   })
 
+  // Adicionar função para verificar se é admin
+  const isAdmin = () => {
+    return user && user.role === "admin"
+  }
+
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user))
@@ -24,10 +29,25 @@ export const AuthProvider = ({ children }) => {
   }, [user])
 
   const login = (userData) => {
-    // Em um app real, você faria uma chamada à API aqui
-    // Simulando um login bem-sucedido
-    setUser(userData)
-    return true
+    // Verificar se é admin baseado no email/senha
+    if (userData.email === "admin@modestyruby.com") {
+      const adminUser = {
+        email: userData.email,
+        name: "Administrador",
+        role: "admin",
+      }
+      setUser(adminUser)
+      return true
+    } else {
+      // Login normal do cliente
+      const clientUser = {
+        email: userData.email,
+        name: userData.email.split("@")[0],
+        role: "client",
+      }
+      setUser(clientUser)
+      return true
+    }
   }
 
   const register = (userData) => {
@@ -46,6 +66,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         isAuthenticated,
+        isAdmin,
         login,
         register,
         logout,

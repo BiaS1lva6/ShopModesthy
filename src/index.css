@@ -4,6 +4,7 @@
   --secondary-bg: #f8f8f8;
   --dark-color: #212529;
   --border-color: #dee2e6;
+  --pink-color: #e91e63;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
 
 /* Header e navegação */
 .header-bg {
-  background-color: var(--primary-bg);
+  background-color: var(--primary-bg) !important;
 }
 
 .logo {
@@ -59,7 +60,7 @@ body {
 .user-menu-item {
   display: block;
   padding: 8px 16px;
-  color: var(--dark-color);
+  color: var(--dark-color) ;
   text-decoration: none;
   transition: background-color 0.2s;
   border: none;
@@ -237,16 +238,120 @@ body {
   color: #fff;
 }
 
-.payment-option {
-  width: 100%;
-  height: 60px;
-  border: 1px solid var(--border-color);
-  background-color: #fff;
-  cursor: pointer;
+/* Formas de pagamento */
+.payment-methods-sidebar {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.payment-option.active {
-  border-color: var(--dark-color);
+.payment-method-option {
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #dee2e6;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  text-align: center;
+}
+
+.payment-method-option:last-child {
+  border-bottom: none;
+}
+
+.payment-method-option:hover {
+  background-color: #e9ecef;
+}
+
+.payment-method-option.active {
+  background-color: var(--pink-color);
+  color: white;
+  border-bottom-color: var(--pink-color);
+}
+
+.payment-content {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  min-height: 400px;
+}
+
+/* Formulário de cartão de crédito */
+.credit-card-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.card-brands {
+  display: flex;
+  gap: 8px;
+}
+
+.card-brand {
+  height: 24px;
+  width: 38px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+/* PIX */
+.pix-payment {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.pix-logo {
+  max-width: 200px;
+  height: auto;
+}
+
+.pix-steps {
+  margin-top: 20px;
+}
+
+.pix-step {
+  padding: 20px;
+}
+
+.step-number-pix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #00d4aa;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Google Pay */
+.googlepay-payment {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.googlepay-logo {
+  max-width: 200px;
+  height: auto;
+}
+
+/* Botão finalizar */
+.btn-finalizar {
+  background-color: var(--pink-color);
+  color: white;
+  border: none;
+  font-weight: bold;
+  padding: 12px;
+}
+
+.btn-finalizar:hover {
+  background-color: #c2185b;
+  color: white;
 }
 
 /* Modal de cadastro */
@@ -312,6 +417,141 @@ body {
   color: #fff;
 }
 
+/* Admin Layout */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.admin-content {
+  flex: 1;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 73px);
+}
+
+/* Sidebar */
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #495057;
+}
+
+.sidebar-brand {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-brand:hover {
+  color: #adb5bd;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.sidebar-nav .nav-link {
+  color: #adb5bd;
+  padding: 0.75rem 1rem;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-nav .nav-link:hover {
+  color: white;
+  background-color: #495057;
+}
+
+.sidebar-nav .nav-link.active {
+  color: white;
+  background-color: #007bff;
+}
+
+.nav-section-title {
+  color: #6c757d;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
+
+/* Cards administrativos */
+.admin-content .card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.admin-content .card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Tabelas administrativas */
+.admin-content .table th {
+  border-top: none;
+  font-weight: 600;
+  color: #495057;
+}
+
+.admin-content .table td {
+  vertical-align: middle;
+}
+
+/* Badges e status */
+.badge {
+  font-size: 0.75em;
+}
+
+/* Formulários administrativos */
+.admin-content .form-label {
+  font-weight: 600;
+}
+
+.admin-content .form-control:focus,
+.admin-content .form-select:focus {
+  border-color: #e8dfd5;
+
+}
+
+/* Progress bars */
+.progress {
+  background-color: #e9ecef;
+}
+
+.progress-bar {
+  background-color: #939aa1;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .carousel-item img {
@@ -324,5 +564,30 @@ body {
 
   .product-thumbnail {
     height: 60px;
+  }
+
+  .payment-content {
+    padding: 20px;
+  }
+
+  .pix-payment,
+  .googlepay-payment,
+  .credit-card-form {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .admin-sidebar {
+    margin-left: -250px;
+    transition: margin-left 0.3s;
+  }
+
+  .admin-main {
+    margin-left: 0;
+  }
+
+  .admin-sidebar.show {
+    margin-left: 0;
   }
 }

@@ -2,11 +2,11 @@ import { Link, useNavigate } from "react-router"
 import { useCart } from "../contexts/CartContext"
 import { useAuth } from "../contexts/AuthContext"
 import { useState } from "react"
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.png"
 
 const Header = ({ openRegisterModal }) => {
   const { itemCount } = useCart()
-  const { isAuthenticated, user, logout } = useAuth()
+  const { isAuthenticated, user, logout, isAdmin } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [showUserMenu, setShowUserMenu] = useState(false)
   const navigate = useNavigate()
@@ -95,17 +95,15 @@ const Header = ({ openRegisterModal }) => {
                         <p className="small text-muted mb-0">{user.email}</p>
                       </div>
                       <div className="user-menu-body">
+                        {isAdmin() && (
+                          <Link to="/admin" className="user-menu-item">
+                            <i className="bi bi-gear me-2"></i>
+                            Painel Admin
+                          </Link>
+                        )}
                         <Link to="/minha-conta" className="user-menu-item">
                           <i className="bi bi-person me-2"></i>
                           Minha Conta
-                        </Link>
-                        <Link to="/pedidos" className="user-menu-item">
-                          <i className="bi bi-bag me-2"></i>
-                          Meus Pedidos
-                        </Link>
-                        <Link to="/favoritos" className="user-menu-item">
-                          <i className="bi bi-heart me-2"></i>
-                          Favoritos
                         </Link>
                         <button className="user-menu-item text-danger" onClick={handleLogout}>
                           <i className="bi bi-box-arrow-right me-2"></i>

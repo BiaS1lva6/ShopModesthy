@@ -53,34 +53,44 @@ Este projeto requer as seguintes dependências:
 - **Gerenciador de Pacotes**: Npm
 
 ---
-
-### Instalação
+## Instalação
 
 Construa o ShopModesthy a partir do código-fonte e instale as dependências:
 
 1. **Clone o repositório**:
    ```bash
-   ❯ git clone https://github.com/BiaS1lva6/ShopModesthy
-2. **Acesse o diretório do projeto**: 
-  ```bash
-  cd ShopModesthy
-3. **Instale as Depedências**:
-  ```bash
+   git clone https://github.com/BiaS1lva6/ShopModesthy
+   ```
+
+2. **Acesse o diretório do projeto**:
+   ```bash
+   cd ShopModesthy
+   ```
+
+3. **Instale as dependências**:
+   ```bash
    npm install
+   ```
+
 ---
 
-### Uso
+## Uso
 
-Execute o projeto com: 
+Execute o projeto com:
 
 **Usando npm**:
- ```bash 
- npm start
- ----
+```bash
+npm start
+```
 
-### Teste
- O Shopmodesthy utiliza o framework de testes { test_framework}, Execute o conjunto de testes com:
+---
 
- **Usando npm**:
- ```bash
- npm text
+## Teste
+
+O ShopModesthy utiliza o framework de testes `{ test_framework }`.  
+Execute o conjunto de testes com:
+
+**Usando npm**:
+```bash
+npm test
+```

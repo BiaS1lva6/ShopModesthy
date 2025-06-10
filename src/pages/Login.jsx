@@ -50,55 +50,56 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrors({}); // Limpa os erros anteriores
-  
-    try {
-      // Faz a chamada ao endpoint para validar o login
-      const response = await fetch("https://localhost:7122/api/Usuarios", {
-        method: "GET",
-        headers: {
-          accept: "text/plain",
-        },
-      });
-  
-      if (!response.ok) {
-        throw new Error("Erro ao conectar ao servidor.");
-      }
-  
-      const users = await response.json(); // Assume que o endpoint retorna uma lista de usuários
-  
-      // Verifica se o email e senha existem na lista de usuários
-      const user = users.find(
-        (u) => u.email === formData.email && u.senha === formData.password
-      );
-  
-      if (user) {
-        // Usa o AuthContext para armazenar o usuário
-        const isLoggedIn = login(user);
-  
-        if (isLoggedIn) {
-          // Redireciona com base no tipo de usuário
-          if (user.tipoUsuario === "admin") {
-            navigate("/admin", { replace: true });
-          } else {
-            navigate(from, { replace: true });
-          }
-        }
-      } else {
-        setErrors({
-          general: "Credenciais inválidas. Por favor, tente novamente.",
-        });
-      }
-    } catch (error) {
-      setErrors({
-        general: "Ocorreu um erro ao fazer login. Por favor, tente novamente.",
-      });
-    } finally {
-      setIsLoading(false);
+  e.preventDefault();
+  setIsLoading(true);
+  setErrors({}); // Limpa os erros anteriores
+
+  if (!validateForm()) {
+    setIsLoading(false);
+    return;
+  }
+
+  try {
+    // Faz a chamada ao endpoint para validar o login
+    const response = await fetch("https://localhost:7122/api/Usuarios", {
+      method: "GET",
+      headers: {
+        accept: "text/plain",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao conectar ao servidor.");
     }
-  };
+
+    const users = await response.json(); // Assume que o endpoint retorna uma lista de usuários
+
+    // Verifica se o email e senha existem na lista de usuários
+    const user = users.find(
+      (u) => u.email === formData.email && u.senha === formData.password
+    );
+
+    if (user) {
+      // Usa o AuthContext para armazenar o usuário
+      const isLoggedIn = login(user);
+
+      if (isLoggedIn) {
+        // Redireciona com base no tipo de usuário
+        if (user.tipoUsuario === "admin") {
+          navigate("/admin", { replace: true });
+        } else {
+          navigate(from, { replace: true });
+        }
+      }
+    } else {
+      setErrors({
+        general: "Credenciais inválidas. Por favor, tente novamente.",
+      });
+    }
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="container py-5">

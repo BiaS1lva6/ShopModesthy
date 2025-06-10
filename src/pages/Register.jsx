@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +11,6 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -96,10 +94,6 @@ const Register = () => {
             errorMessage || "Erro ao cadastrar. Por favor, tente novamente.",
         });
       }
-    } catch (error) {
-      setErrors({
-        general: "Ocorreu um erro ao cadastrar. Por favor, tente novamente.",
-      });
     } finally {
       setIsLoading(false);
     }

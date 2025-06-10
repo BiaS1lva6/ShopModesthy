@@ -10,7 +10,7 @@
 
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![Vite](https://img.shields.io/badge/Vite-5.0.8-yellow)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3.4.1-teal)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.3.0-purple)
 ![Node](https://img.shields.io/badge/Node-v18.18.0-green)
 
 ---
@@ -60,28 +60,31 @@ Construa o ShopModesthy a partir do código-fonte e instale as dependências:
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/Blackthyd/ShopModesthy
-
-2. **Acesse o diretório do projeto:**: 
+   ❯ git clone https://github.com/BiaS1lva6/ShopModesthy
+2. **Acesse o diretório do projeto**: 
   ```bash
   cd ShopModesthy
-
 3. **Instale as Depedências**:
   ```bash
    npm install
-
+---
 
 ### Uso
-Execute o prijeto com: 
+
+Execute o projeto com: 
 
 **Usando npm**:
-```bash
+ ```bash 
  npm start
- 
- ### Teste
+---
+
+### Teste
+
  O Shopmodesthy utiliza o framework de testes { test_framework}, Execute o conjunto de testes com:
 
  **Usando npm**:
  ```bash
  npm text
+
+
 

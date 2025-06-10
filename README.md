@@ -64,6 +64,7 @@ Construa o ShopModesthy a partir do código-fonte e instale as dependências:
 2. **Acesse o diretório do projeto**: 
   ```bash
   cd ShopModesthy
+  
 3. **Instale as Depedências**:
   ```bash
    npm install

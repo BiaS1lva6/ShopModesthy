@@ -16,26 +16,26 @@ const AdminDashboard = () => {
       totalProducts: products.length,
       totalCategories: 4,
       totalOrders: 156,
-      totalRevenue: 45890.50,
+      totalRevenue: 45890.5,
     })
   }, [])
 
   return (
-    <div className="container py-4">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>Painel Administrativo</h1>
-        <span className="badge bg-primary">Administrador</span>
+    <div className="container-fluid py-3 py-md-4">
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <h1 className="h3 mb-2 mb-md-0">Painel Administrativo</h1>
+        <span className="badge bg-primary fs-6">Administrador</span>
       </div>
 
       {/* Cards de Estatísticas */}
       <div className="row mb-4">
-        <div className="col-md-3 mb-3">
-          <div className="card bg-primary text-white">
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card bg-primary text-white h-100">
             <div className="card-body">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4>{stats.totalProducts}</h4>
-                  <p className="mb-0">Produtos</p>
+                  <h4 className="mb-1">{stats.totalProducts}</h4>
+                  <p className="mb-0 small">Produtos</p>
                 </div>
                 <div className="align-self-center">
                   <i className="bi bi-box-seam fs-1"></i>
@@ -45,13 +45,13 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="col-md-3 mb-3">
-          <div className="card bg-success text-white">
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card bg-success text-white h-100">
             <div className="card-body">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4>{stats.totalCategories}</h4>
-                  <p className="mb-0">Categorias</p>
+                  <h4 className="mb-1">{stats.totalCategories}</h4>
+                  <p className="mb-0 small">Categorias</p>
                 </div>
                 <div className="align-self-center">
                   <i className="bi bi-tags fs-1"></i>
@@ -61,13 +61,13 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="col-md-3 mb-3">
-          <div className="card bg-info text-white">
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card bg-info text-white h-100">
             <div className="card-body">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4>{stats.totalOrders}</h4>
-                  <p className="mb-0">Pedidos</p>
+                  <h4 className="mb-1">{stats.totalOrders}</h4>
+                  <p className="mb-0 small">Pedidos</p>
                 </div>
                 <div className="align-self-center">
                   <i className="bi bi-cart-check fs-1"></i>
@@ -77,13 +77,15 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="col-md-3 mb-3">
-          <div className="card bg-warning text-white">
+        <div className="col-6 col-md-3 mb-3">
+          <div className="card bg-warning text-white h-100">
             <div className="card-body">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4>R$ {stats.totalRevenue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h4>
-                  <p className="mb-0">Faturamento</p>
+                  <h4 className="mb-1">
+                    R$ {stats.totalRevenue.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                  </h4>
+                  <p className="mb-0 small">Faturamento</p>
                 </div>
                 <div className="align-self-center">
                   <i className="bi bi-currency-dollar fs-1"></i>
@@ -96,8 +98,8 @@ const AdminDashboard = () => {
 
       {/* Menu de Ações Rápidas */}
       <div className="row">
-        <div className="col-md-6 mb-4">
-          <div className="card">
+        <div className="col-lg-6 mb-4">
+          <div className="card h-100">
             <div className="card-header">
               <h5 className="mb-0">Gerenciamento de Produtos</h5>
             </div>
@@ -120,8 +122,8 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="col-md-6 mb-4">
-          <div className="card">
+        <div className="col-lg-6 mb-4">
+          <div className="card h-100">
             <div className="card-header">
               <h5 className="mb-0">Vendas e Promoções</h5>
             </div>
@@ -153,7 +155,7 @@ const AdminDashboard = () => {
         <div className="card-body">
           <div className="table-responsive">
             <table className="table table-hover">
-              <thead>
+              <thead className="d-none d-md-table-header-group">
                 <tr>
                   <th>Pedido</th>
                   <th>Cliente</th>
@@ -165,32 +167,50 @@ const AdminDashboard = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>#12345</td>
-                  <td>Maria Silva</td>
-                  <td>28/05/2025</td>
-                  <td><span className="badge bg-warning">Pendente</span></td>
-                  <td>R$ 229,99</td>
-                  <td>
+                  <td data-label="Pedido">
+                    <strong>#12345</strong>
+                  </td>
+                  <td data-label="Cliente">Maria Silva</td>
+                  <td data-label="Data">28/05/2025</td>
+                  <td data-label="Status">
+                    <span className="badge bg-warning">Pendente</span>
+                  </td>
+                  <td data-label="Total">
+                    <strong>R$ 229,99</strong>
+                  </td>
+                  <td data-label="Ações">
                     <button className="btn btn-sm btn-outline-primary">Ver</button>
                   </td>
                 </tr>
                 <tr>
-                  <td>#12344</td>
-                  <td>João Santos</td>
-                  <td>28/05/2025</td>
-                  <td><span className="badge bg-success">Confirmado</span></td>
-                  <td>R$ 179,99</td>
-                  <td>
+                  <td data-label="Pedido">
+                    <strong>#12344</strong>
+                  </td>
+                  <td data-label="Cliente">João Santos</td>
+                  <td data-label="Data">28/05/2025</td>
+                  <td data-label="Status">
+                    <span className="badge bg-success">Confirmado</span>
+                  </td>
+                  <td data-label="Total">
+                    <strong>R$ 179,99</strong>
+                  </td>
+                  <td data-label="Ações">
                     <button className="btn btn-sm btn-outline-primary">Ver</button>
                   </td>
                 </tr>
                 <tr>
-                  <td>#12343</td>
-                  <td>Ana Costa</td>
-                  <td>27/05/2025</td>
-                  <td><span className="badge bg-info">Enviado</span></td>
-                  <td>R$ 359,98</td>
-                  <td>
+                  <td data-label="Pedido">
+                    <strong>#12343</strong>
+                  </td>
+                  <td data-label="Cliente">Ana Costa</td>
+                  <td data-label="Data">27/05/2025</td>
+                  <td data-label="Status">
+                    <span className="badge bg-info">Enviado</span>
+                  </td>
+                  <td data-label="Total">
+                    <strong>R$ 359,98</strong>
+                  </td>
+                  <td data-label="Ações">
                     <button className="btn btn-sm btn-outline-primary">Ver</button>
                   </td>
                 </tr>

@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router"
-import { useAuth } from "../contexts/AuthContext"
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,90 +9,101 @@ const Register = () => {
     password: "",
     confirmPassword: "",
     acceptTerms: false,
-  })
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const { register } = useAuth()
-  const navigate = useNavigate()
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const { register } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-    }))
+    }));
 
     // Limpar erro quando o campo é editado
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
         [name]: "",
-      }))
+      }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Nome é obrigatório"
+      newErrors.name = "Nome é obrigatório";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "E-mail é obrigatório"
+      newErrors.email = "E-mail é obrigatório";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "E-mail inválido"
+      newErrors.email = "E-mail inválido";
     }
 
     if (!formData.password) {
-      newErrors.password = "Senha é obrigatória"
+      newErrors.password = "Senha é obrigatória";
     } else if (formData.password.length < 6) {
-      newErrors.password = "A senha deve ter pelo menos 6 caracteres"
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres";
     }
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "As senhas não coincidem"
+      newErrors.confirmPassword = "As senhas não coincidem";
     }
 
     if (!formData.acceptTerms) {
-      newErrors.acceptTerms = "Você deve aceitar os termos e condições"
+      newErrors.acceptTerms = "Você deve aceitar os termos e condições";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!validateForm()) return
+    if (!validateForm()) return;
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-      // Simulando uma chamada de API
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const response = await fetch("https://localhost:7122/api/Usuarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "text/plain",
+        },
+        body: JSON.stringify({
+          nomeUsuario: formData.name,
+          senha: formData.password,
+          email: formData.email,
+          dataCriacao: new Date().toISOString(),
+          ultimoLogin: new Date().toISOString(),
+          ativo: true,
+          tipoUsuario: "user", // Alterar conforme necessário
+        }),
+      });
 
-      const success = register({
-        name: formData.name,
-        email: formData.email,
-      })
-
-      if (success) {
-        navigate("/")
+      if (response.ok) {
+        navigate("/");
       } else {
+        const errorMessage = await response.text();
         setErrors({
-          general: "Erro ao cadastrar. Por favor, tente novamente.",
-        })
+          general:
+            errorMessage || "Erro ao cadastrar. Por favor, tente novamente.",
+        });
       }
     } catch (error) {
       setErrors({
         general: "Ocorreu um erro ao cadastrar. Por favor, tente novamente.",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="container py-5">
@@ -115,14 +126,18 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
-                    className={`form-control ${errors.name ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.name ? "is-invalid" : ""
+                    }`}
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Seu nome completo"
                   />
-                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                  {errors.name && (
+                    <div className="invalid-feedback">{errors.name}</div>
+                  )}
                 </div>
 
                 <div className="mb-3">
@@ -131,14 +146,18 @@ const Register = () => {
                   </label>
                   <input
                     type="email"
-                    className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.email ? "is-invalid" : ""
+                    }`}
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Seu e-mail"
                   />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                  {errors.email && (
+                    <div className="invalid-feedback">{errors.email}</div>
+                  )}
                 </div>
 
                 <div className="mb-3">
@@ -147,14 +166,18 @@ const Register = () => {
                   </label>
                   <input
                     type="password"
-                    className={`form-control ${errors.password ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Crie uma senha"
                   />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
 
                 <div className="mb-3">
@@ -163,20 +186,28 @@ const Register = () => {
                   </label>
                   <input
                     type="password"
-                    className={`form-control ${errors.confirmPassword ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.confirmPassword ? "is-invalid" : ""
+                    }`}
                     id="confirmPassword"
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     placeholder="Confirme sua senha"
                   />
-                  {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
+                  {errors.confirmPassword && (
+                    <div className="invalid-feedback">
+                      {errors.confirmPassword}
+                    </div>
+                  )}
                 </div>
 
                 <div className="mb-3 form-check">
                   <input
                     type="checkbox"
-                    className={`form-check-input ${errors.acceptTerms ? "is-invalid" : ""}`}
+                    className={`form-check-input ${
+                      errors.acceptTerms ? "is-invalid" : ""
+                    }`}
                     id="acceptTerms"
                     name="acceptTerms"
                     checked={formData.acceptTerms}
@@ -185,14 +216,24 @@ const Register = () => {
                   <label className="form-check-label" htmlFor="acceptTerms">
                     Aceito os termos e condições e a política de privacidade
                   </label>
-                  {errors.acceptTerms && <div className="invalid-feedback">{errors.acceptTerms}</div>}
+                  {errors.acceptTerms && (
+                    <div className="invalid-feedback">{errors.acceptTerms}</div>
+                  )}
                 </div>
 
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-dark" disabled={isLoading}>
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    disabled={isLoading}
+                  >
                     {isLoading ? (
                       <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                         Cadastrando...
                       </>
                     ) : (
@@ -215,7 +256,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

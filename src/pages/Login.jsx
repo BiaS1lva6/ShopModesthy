@@ -1,87 +1,104 @@
-import { useState } from "react"
-import { Link, useNavigate, useLocation } from "react-router"
-import { useAuth } from "../contexts/AuthContext"
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  })
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const { login } = useAuth()
-  const navigate = useNavigate()
-  const location = useLocation()
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Obter o redirecionamento da URL, se existir
-  const from = location.state?.from?.pathname || "/"
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
+    }));
 
     // Limpar erro quando o campo é editado
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
         [name]: "",
-      }))
+      }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "E-mail é obrigatório"
+      newErrors.email = "E-mail é obrigatório";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "E-mail inválido"
+      newErrors.email = "E-mail inválido";
     }
 
     if (!formData.password) {
-      newErrors.password = "Senha é obrigatória"
+      newErrors.password = "Senha é obrigatória";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsLoading(true)
-
+    e.preventDefault();
+    setIsLoading(true);
+    setErrors({}); // Limpa os erros anteriores
+  
     try {
-      // Simulando uma chamada de API
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      const success = login(formData) // Passar formData completo incluindo senha
-
-      if (success) {
-        // Verificar se é admin e redirecionar adequadamente
-        if (formData.email === "admin@modestyruby.com" && formData.password === "admin123") {
-          navigate("/admin", { replace: true })
-        } else {
-          navigate(from, { replace: true })
+      // Faz a chamada ao endpoint para validar o login
+      const response = await fetch("https://localhost:7122/api/Usuarios", {
+        method: "GET",
+        headers: {
+          accept: "text/plain",
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Erro ao conectar ao servidor.");
+      }
+  
+      const users = await response.json(); // Assume que o endpoint retorna uma lista de usuários
+  
+      // Verifica se o email e senha existem na lista de usuários
+      const user = users.find(
+        (u) => u.email === formData.email && u.senha === formData.password
+      );
+  
+      if (user) {
+        // Usa o AuthContext para armazenar o usuário
+        const isLoggedIn = login(user);
+  
+        if (isLoggedIn) {
+          // Redireciona com base no tipo de usuário
+          if (user.tipoUsuario === "admin") {
+            navigate("/admin", { replace: true });
+          } else {
+            navigate(from, { replace: true });
+          }
         }
       } else {
         setErrors({
           general: "Credenciais inválidas. Por favor, tente novamente.",
-        })
+        });
       }
     } catch (error) {
       setErrors({
         general: "Ocorreu um erro ao fazer login. Por favor, tente novamente.",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="container py-5">
@@ -104,14 +121,18 @@ const Login = () => {
                   </label>
                   <input
                     type="email"
-                    className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.email ? "is-invalid" : ""
+                    }`}
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Seu e-mail"
                   />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                  {errors.email && (
+                    <div className="invalid-feedback">{errors.email}</div>
+                  )}
                 </div>
 
                 <div className="mb-3">
@@ -120,28 +141,44 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
-                    className={`form-control ${errors.password ? "is-invalid" : ""}`}
+                    className={`form-control ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Sua senha"
                   />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
 
                 <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="rememberMe" />
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="rememberMe"
+                  />
                   <label className="form-check-label" htmlFor="rememberMe">
                     Lembrar-me
                   </label>
                 </div>
 
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-dark" disabled={isLoading}>
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    disabled={isLoading}
+                  >
                     {isLoading ? (
                       <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                         Entrando...
                       </>
                     ) : (
@@ -170,7 +207,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

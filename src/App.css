@@ -19,3 +19,9 @@
   }
 }
 
+.logo-g {
+  max-width: 20px; /* Define a largura máxima */
+  height: auto; /* Mantém a proporção da imagem */
+  display: inline-block; /* Garante que a imagem seja renderizada como um elemento inline */
+}
+

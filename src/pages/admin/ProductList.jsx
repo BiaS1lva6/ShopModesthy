@@ -1,31 +1,44 @@
-import { useState } from "react"
-import { Link } from "react-router"
-import products from "../../data/products"
+import { useState, useEffect } from "react";
+import { Link } from "react-router";
 
 const AdminProductList = () => {
-  const [productList, setProductList] = useState(products)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [productList, setProductList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const categories = [...new Set(products.map((product) => product.category))]
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://localhost:7122/api/Produtos", {
+        method: "GET",
+        headers: {
+          accept: "text/plain",
+        },
+      });
+
+        if (!response.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+
+        const data = await response.json();
+        setProductList(data); // Atualiza o estado com os produtos retornados
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+        alert("Erro ao buscar produtos. Tente novamente mais tarde.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const filteredProducts = productList.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === "" || product.category === selectedCategory
-    return matchesSearch && matchesCategory
-  })
-
-  const handleDelete = (productId) => {
-    if (window.confirm("Tem certeza que deseja excluir este produto?")) {
-      setProductList((prev) => prev.filter((product) => product.id !== productId))
-    }
-  }
-
-  const toggleStatus = (productId) => {
-    setProductList((prev) =>
-      prev.map((product) => (product.id === productId ? { ...product, inStock: !product.inStock } : product)),
-    )
-  }
+    const matchesSearch = product.nome.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "" || product.categoria?.nome === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div className="container py-4">
@@ -41,27 +54,25 @@ const AdminProductList = () => {
       <div className="card mb-4">
         <div className="card-body">
           <div className="row">
-            <div className="col-md-6 mb-3 mb-md-0">
-              <label className="form-label">Buscar produto</label>
+            <div className="col-md-6">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Digite o nome do produto..."
+                placeholder="Buscar produto..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="col-md-6">
-              <label className="form-label">Categoria</label>
               <select
                 className="form-select"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                <option value="">Todas as categorias</option>
-                {categories.map((category) => (
+                <option value="">Todas as Categorias</option>
+                {[...new Set(productList.map((product) => product.categoria?.nome))].map((category) => (
                   <option key={category} value={category}>
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                    {category}
                   </option>
                 ))}
               </select>
@@ -73,79 +84,53 @@ const AdminProductList = () => {
       {/* Lista de Produtos */}
       <div className="card">
         <div className="card-body">
-          <div className="table-responsive">
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th>Imagem</th>
-                  <th>Nome</th>
-                  <th>Categoria</th>
-                  <th>Preço</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredProducts.map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      <img
-                        src={product.image || "/placeholder.svg?height=50&width=50"}
-                        alt={product.name}
-                        width="50"
-                        height="50"
-                        className="rounded"
-                      />
-                    </td>
-                    <td>
-                      <div>
-                        <strong>{product.name}</strong>
-                        <br />
-                        <small className="text-muted">ID: {product.id}</small>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="badge bg-secondary">
-                        {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
-                      </span>
-                    </td>
-                    <td>
-                      <div>
-                        <strong>R$ {product.price.toFixed(2)}</strong>
-                        {product.originalPrice && (
-                          <div>
-                            <small className="text-muted text-decoration-line-through">
-                              R$ {product.originalPrice.toFixed(2)}
-                            </small>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                    <td>
-                      <button
-                        className={`btn btn-sm ${product.inStock ? "btn-success" : "btn-danger"}`}
-                        onClick={() => toggleStatus(product.id)}
-                      >
-                        {product.inStock ? "Ativo" : "Inativo"}
-                      </button>
-                    </td>
-                    <td>
-                      <div className="btn-group" role="group">
-                        <Link to={`/admin/produtos/editar/${product.id}`} className="btn btn-sm btn-outline-primary">
-                          <i className="bi bi-pencil"></i>
-                        </Link>
-                        <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(product.id)}>
-                          <i className="bi bi-trash"></i>
-                        </button>
-                      </div>
-                    </td>
+          {isLoading ? (
+            <p className="text-center">Carregando produtos...</p>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Destaque</th>
+                    <th>Ações</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {filteredProducts.map((product) => (
+                    <tr key={product.produtoId}>
+                      <td>{product.nome}</td>
+                      <td>{product.categoria?.nome || "Sem Categoria"}</td>
+                      <td>R$ {product.preco.toFixed(2)}</td>
+                      <td>{product.estoque}</td>
+                      <td>{product.destaque ? "Sim" : "Não"}</td>
+                      <td>
+                        <div className="btn-group">
+                          <Link
+                            to={`/admin/produtos/editar/${product.produtoId}`}
+                            className="btn btn-sm btn-outline-primary"
+                          >
+                            <i className="bi bi-pencil"></i>
+                          </Link>
+                          <button
+                            className="btn btn-sm btn-outline-danger"
+                            onClick={() => alert("Excluir produto não implementado")}
+                          >
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
-          {filteredProducts.length === 0 && (
+          {filteredProducts.length === 0 && !isLoading && (
             <div className="text-center py-4">
               <p>Nenhum produto encontrado.</p>
             </div>
@@ -153,7 +138,7 @@ const AdminProductList = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminProductList
+export default AdminProductList;

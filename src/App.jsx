@@ -27,6 +27,7 @@ import AdminCategoryList from "./pages/admin/CategoryList"
 import AdminCategoryForm from "./pages/admin/CategoryForm"
 import AdminOrderList from "./pages/admin/OrderList"
 import AdminUserList from "./pages/admin/UserList"
+import "./App.css"
 
 function App() {
   return (

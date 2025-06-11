@@ -95,20 +95,44 @@ const AdminCouponForm = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (!validateForm()) {
-      return
+      return;
     }
 
-    // Aqui você faria a chamada para sua API
-    console.log("Dados do cupom:", formData)
+    try {
+      const response = await fetch('https://localhost:7122/api/CupomDescontos', {
+        method: 'POST',
+        headers: {
+          'accept': 'text/plain',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome: formData.name, // Nome do cupom
+          desconto: parseInt(formData.discount, 10), // Valor do desconto
+          dataValidade: formData.validTo ? new Date(formData.validTo).toISOString() : null, // Data de validade no formato ISO 8601
+          ativo: formData.active === true, // Status ativo (booleano)
+          dataCriacao: new Date().toISOString(), // Data de criação no formato ISO 8601
+          limiteUso: formData.usageLimit ? parseInt(formData.usageLimit, 10) : null, // Limite de uso
+        }),
+      });
 
-    // Simular sucesso
-    alert(isEditing ? "Cupom atualizado com sucesso!" : "Cupom criado com sucesso!")
-    navigate("/admin/cupons")
-  }
+      if (!response.ok) {
+        throw new Error('Erro ao criar o cupom');
+      }
+
+      const result = await response.json();
+      console.log('Cupom criado:', result);
+
+      alert('Cupom criado com sucesso!');
+      navigate('/admin/cupons');
+    } catch (error) {
+      console.error('Erro ao criar o cupom:', error);
+      alert('Erro ao criar o cupom. Tente novamente mais tarde.');
+    }
+  };
 
   return (
     <div className="container py-4">
